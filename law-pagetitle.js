@@ -30,32 +30,43 @@ try {
 
   // If custompage title use only custom page title
   if (pageTitleField != '') {
+
     document.write('<title>' + pageTitleField + ' | Seattle University School of Law</title>');
+
   } else {
+
     // Else use recursive title construction
     var channel = publishCache.getChannel();
     document.write("<title>");
     var titleString = "<title>"; // debugging value
     titleConstruction = true;
+
     if (isFulltext) {
       titleString += articleTitle + " | ";
     }
+
     // Loop though section parents and append section names seperated by dashes
     while (section && section.getLevel(channel) > 0) {
       document.write(section.getName('en'));
       titleString += section.getName('en');
+
       if (section.getLevel(channel) > 1) {
         document.write(" | ");
         titleString += " | ";
       }
+
       section = section.getParent();
     }
+
     document.write("</title>");
     titleConstruction = false;
-    // Report test title
-    //document.write('<!-- <script>eval(String("console.error(\'' + "New Title: " + titleString + '\')"));</script> -->\n');
   }
+
+
+
+
 } catch (error) {
+  
   // Report error
   document.write('<!-- <script>eval(String("console.error(\'' + error + '\')"));</script> -->\n');
   // Close title if title construction incomplete
