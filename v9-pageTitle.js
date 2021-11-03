@@ -1,15 +1,25 @@
-// Importing classes
-importClass(com.terminalfour.publish.utils.BrokerUtils); // helps determine fulltext page
+// Import T4 Utilities
+importClass(com.terminalfour.publish.utils.BrokerUtils);
+
+
+
 
 // Processing necessary T4 tags
 var pageTitleField = com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, content, language, isPreview, "<t4 type='content' name='Custom Title' output='normal' display_field='value' />");
 var t4PageTitle = com.terminalfour.publish.utils.BrokerUtils.processT4Tags(dbStatement, publishCache, section, content, language, isPreview, "<t4 type='title' append-content='true' append-element='Article Title' separator=' - ' />");
 
+
+
+
 // Set title construction to false
 titleConstruction = false;
 
-// Encapulate all in try catch for safety
+
+
+
+// Main
 try {
+    
   // Determine if page is fulltext (article)
   isFulltext = BrokerUtils.isFullTextPage(publishCache)
 
@@ -45,8 +55,8 @@ try {
     }
     document.write("</title>");
     titleConstruction = false;
-    // Report test title
-    //document.write('<!-- <script>eval(String("console.error(\'' + "New Title: " + titleString + '\')"));</script> -->\n');
+
+
   }
 } catch (error) {
   // Report error
